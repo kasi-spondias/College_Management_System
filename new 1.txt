@@ -1,0 +1,129 @@
+if($query){
+			echo "<script>alert('Successfully Updated Students Details')</script>";
+			}
+			
+			
+			
+			
+			
+			if(isset($_SESSION['roll_no'])){
+	        $roll_no = $_SESSION['roll_no'];
+	        $query = $db->query("select * from student_register where roll_no='$roll_no'") or die(mysqli_error());
+	        $row = mysqli_fetch_assoc($query);
+			echo "<script>alert('Already exists')</script>";
+			}
+		else
+			echo "<script>alert('Successfully updated student details')</script>";
+			
+		
+		}
+		
+		
+		
+		
+		
+		$query = mysql_query("SELECT * FROM `student_register WHERE roll_no = '". $roll_no ."'");
+
+if (mysql_num_rows($query) > 0)
+{
+     echo 'Roll Number is Already In Use.';
+}
+else
+     echo 'Successfully Updated';
+	 
+	 
+	 
+	 
+	 
+	 
+	 if(isset($_POST['submit1'])||isset($_POST['submit1'])) {
+
+$login = $_POST['login'];
+$query_login = "SELECT login FROM registration WHERE login='$login';";
+$result_login = mysqli_query($conn,$query_login);
+$anything_found = mysqli_num_rows($result_login);
+
+       //check if the username already exists
+
+if($anything_found>0)
+    {
+    echo "Sorry, that Username is already taken. Please choose another.";
+    return false;  }
+
+    else {      //proceed with registration
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	$check_roll_no = mysqli_query($conn, "SELECT roll_no FROM student_register where roll_no = '$roll_no' ");
+if(mysqli_num_rows($check_roll_no) >0){
+	
+    echo('Roll Number Already exists');
+	return false;
+}
+else{
+    if (isset($_POST['student_register'])) {
+    $query = $db->query("INSERT INTO `student_register`(`id`, `name`, `roll_no`, `dob`, `mobile_no`, `email_id`, `password`, `branch`, `semister`) VALUES ('','$name','$roll_no','$dob','$mobile_no','$email_id','$pass','$branch','$semister')") or die(mysqli_error());
+		
+    echo('Data Entered Successfully');
+}
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	$queries = $db->query("select * from student_register where roll_no='$roll_number'") or die(mysqli_error());
+	 $result=mysqli_fetch_assoc($queries); //print_r($result); die;
+   if($result)
+   {
+	$user = $result['roll_no'];
+	$_SESSION['roll_no']= $user;
+    echo "<script type='text/javascript'>alert('Roll Number already exists');</script>";
+   }
+   else
+   {
+	$message = "Data Uploaded Successfully";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+   }
+   /*if(isset($_SESSION['roll_no'])){ 
+	header("location:stu_dashboard.php");
+	}*/	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	$firstname = $_POST["firstname"];
+$lastname = $_POST["lastname"];
+$email = $_POST["email"];
+$pass = $_POST["password"];
+
+$check_email = mysqli_query($conn, "SELECT Email FROM crud where Email = '$email' ");
+if(mysqli_num_rows($check_email) > 0){
+    echo('Email Already exists');
+}
+else{
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $result = mysqli_query($conn, "INSERT INTO crud (Firstname, Lastname, Email, Password) VALUES ('$firstname', '$lastname', '$email', '$pass')");
+}
+    echo('Record Entered Successfully');
+}
